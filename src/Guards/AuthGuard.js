@@ -9,7 +9,7 @@ function AuthGuard({ children }){
     if(isAuthenticated){
         return <Fragment>{children}</Fragment>;
     } else {
-        return <Navigate to="/auth/login" />;
+        return <Navigate to="/login" />;
     }
 
 }
