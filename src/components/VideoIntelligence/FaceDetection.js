@@ -180,7 +180,7 @@ function LabelDetection() {
                                                                                         track
                                                                                             .segment
                                                                                             .start_time_offset
-                                                                                    }
+                                                                                    }s
                                                                                 </p>
                                                                                 <p className="m-0">
                                                                                     End
@@ -190,7 +190,7 @@ function LabelDetection() {
                                                                                         track
                                                                                             .segment
                                                                                             .end_time_offset
-                                                                                    }
+                                                                                    }s
                                                                                 </p>
                                                                                 <p className="fw-bold">
                                                                                     Confidence:{" "}

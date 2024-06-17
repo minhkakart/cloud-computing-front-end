@@ -120,7 +120,7 @@ function LabelDetection() {
                 <Button
                     variant="primary"
                     onClick={handleUpload}
-                    disabled={isLoading}>
+                    disabled={isLoading || !file}>
                     {isLoading && (
                         <Spinner
                             as="span"
