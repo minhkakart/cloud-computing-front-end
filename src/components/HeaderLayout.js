@@ -8,7 +8,7 @@ function HeaderLayout({ children }) {
         <div className="d-flex flex-column">
             <div className="header bg-primary text-white mb-5">
                 <div className="container d-flex flex-row justify-content-between align-items-center">
-                    <h1>Cloud Computing</h1>
+                    <Link to="/" className="fs-1 text-decoration-none text-white fw-medium">Cloud Computing</Link>
                     {state.user ? (
                         <button type="button" className="btn btn-outline-light">{state.user}</button>
                     ) : (

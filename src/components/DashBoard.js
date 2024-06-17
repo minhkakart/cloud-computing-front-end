@@ -10,21 +10,21 @@ const DashBoard = () => {
             link: "/cloud-translate/translate",
         },
         {
-            name: "Cloud Video Intelligence",
+            name: "Label Detection",
             description:
-                "Detects objects, explicit content, and scene changes in videos. It also specifies the region for…",
-            link: "#",
+                "Label detection in video with AI technology",
+            link: "/video-intelligence/label-detection",
         },
         {
-            name: "Vertex AI",
+            name: "Detect Language",
             description:
-                "Train high-quality custom machine learning models with minimal machine learning expertise and…",
-            link: "#",
+                "Detects the language of text within a request.",
+            link: "/cloud-translate/detect-language",
         },
         {
-            name: "Cloud Speech-to-Text",
-            description: "Speech recognition",
-            link: "#",
+            name: "Face Detection",
+            description: "Face detection in video with AI technology",
+            link: "/video-intelligence/face-detection",
         },
     ];
 

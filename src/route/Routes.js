@@ -8,6 +8,9 @@ import UploadImage from "../components/UploadImage";
 import HeaderLayout from "../components/HeaderLayout";
 import CloudTranslate from "../components/cloud-translate/CloudTranslate";
 import AuthenticatedRoute from "../components/auth/AuthenticatedRoute";
+import DetectLanguage from "../components/cloud-translate/DetectLanguage";
+import LabelDetection from "../components/VideoIntelligence/LabelDetection";
+import FaceDetection from "../components/VideoIntelligence/FaceDetection";
 
 function Routes() {
     return useRoutes([
@@ -61,8 +64,27 @@ function Routes() {
                         <AuthenticatedRoute Element={CloudTranslate} Layout={HeaderLayout} />
                     ),
                 },
+                {
+                    path: "detect-language",
+                    element: (
+                        <AuthenticatedRoute Element={DetectLanguage} Layout={HeaderLayout} />
+                    ),
+                },
             ],
         },
+        {
+            path: "video-intelligence",
+            children: [
+                {
+                    path: "label-detection",
+                    element: <AuthenticatedRoute Element={LabelDetection} Layout={HeaderLayout} />
+                },
+                {
+                    path: "face-detection",
+                    element: <AuthenticatedRoute Element={FaceDetection} Layout={HeaderLayout} />
+                }
+            ]
+        }
     ]);
 }
 
