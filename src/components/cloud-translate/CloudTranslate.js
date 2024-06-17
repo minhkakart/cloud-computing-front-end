@@ -76,7 +76,7 @@ function CloudTranslate() {
                         console.log(error);
                         setError({
                             show: true,
-                            message: error.response.data.message,
+                            message: error.message,
                         });
                     })
                     .finally(() => {
@@ -86,7 +86,7 @@ function CloudTranslate() {
             .catch((error) => {
                 console.log(error);
                 setIsLoading(false);
-                setError({ show: true, message: error.response.data.message });
+                setError({ show: true, message: error.message });
             });
     };
 

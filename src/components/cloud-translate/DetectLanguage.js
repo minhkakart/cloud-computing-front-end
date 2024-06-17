@@ -40,7 +40,7 @@ function DetectLanguage() {
                 console.error(error);
                 setError({
                     show: true,
-                    message: error.response.data.message,
+                    message: error.message,
                 });
             })
             .finally(() => {
@@ -82,7 +82,7 @@ function DetectLanguage() {
                         console.log(error);
                         setError({
                             show: true,
-                            message: error.response.data.message,
+                            message: error.message,
                         });
                     })
                     .finally(() => {
@@ -92,7 +92,7 @@ function DetectLanguage() {
             .catch((error) => {
                 console.log(error);
                 setIsLoading(false);
-                setError({ show: true, message: error.response.data.message });
+                setError({ show: true, message: error.message });
             });
     };
 

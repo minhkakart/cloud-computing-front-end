@@ -38,13 +38,13 @@ const Login = () => {
                                 token: res.data.access_token,
                             },
                         });
-                        navigator("/dashboard");
+                        navigator("/");
                     })
                     .catch((error) => {
                         console.log(error);
                         setError({
                             show: true,
-                            message: error.response.data.message,
+                            message: error.message,
                         });
                     })
                     .finally(() => {
@@ -54,7 +54,7 @@ const Login = () => {
             .catch((error) => {
                 console.log(error);
                 setLoading(false);
-                setError({ show: true, message: error.response.data.message });
+                setError({ show: true, message: error.message });
             });
     };
 

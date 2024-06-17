@@ -74,7 +74,7 @@ function LabelDetection() {
                                     setIsLoading(false);
                                     setError({
                                         show: true,
-                                        message: error.response.data.message,
+                                        message: error.message,
                                     });
                                 })
                                 .finally(() => {
@@ -87,7 +87,7 @@ function LabelDetection() {
                             setIsLoading(false);
                             setError({
                                 show: true,
-                                message: error.response.data.message,
+                                message: error.message,
                             });
                         });
                 })
@@ -96,7 +96,7 @@ function LabelDetection() {
                     setIsLoading(false);
                     setError({
                         show: true,
-                        message: error.response.data.message,
+                        message: error.message,
                     });
                 });
         } catch (error) {

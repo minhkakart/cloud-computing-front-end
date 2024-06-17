@@ -1,4 +1,4 @@
-import { Navigate, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import DashBoard from "../components/DashBoard";
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -16,7 +16,11 @@ function Routes() {
     return useRoutes([
         {
             path: "/",
-            element: <Navigate to="dashboard" />,
+            element: (
+                <HeaderLayout>
+                    <DashBoard />
+                </HeaderLayout>
+            ),
         },
         {
             path: "/",
@@ -28,14 +32,6 @@ function Routes() {
                 {
                     path: "register",
                     element: <Register />,
-                },
-                {
-                    path: "dashboard",
-                    element: (
-                        <HeaderLayout>
-                            <DashBoard />
-                        </HeaderLayout>
-                    ),
                 },
             ],
         },
@@ -61,13 +57,19 @@ function Routes() {
                 {
                     path: "translate",
                     element: (
-                        <AuthenticatedRoute Element={CloudTranslate} Layout={HeaderLayout} />
+                        <AuthenticatedRoute
+                            Element={CloudTranslate}
+                            Layout={HeaderLayout}
+                        />
                     ),
                 },
                 {
                     path: "detect-language",
                     element: (
-                        <AuthenticatedRoute Element={DetectLanguage} Layout={HeaderLayout} />
+                        <AuthenticatedRoute
+                            Element={DetectLanguage}
+                            Layout={HeaderLayout}
+                        />
                     ),
                 },
             ],
@@ -77,14 +79,24 @@ function Routes() {
             children: [
                 {
                     path: "label-detection",
-                    element: <AuthenticatedRoute Element={LabelDetection} Layout={HeaderLayout} />
+                    element: (
+                        <AuthenticatedRoute
+                            Element={LabelDetection}
+                            Layout={HeaderLayout}
+                        />
+                    ),
                 },
                 {
                     path: "face-detection",
-                    element: <AuthenticatedRoute Element={FaceDetection} Layout={HeaderLayout} />
-                }
-            ]
-        }
+                    element: (
+                        <AuthenticatedRoute
+                            Element={FaceDetection}
+                            Layout={HeaderLayout}
+                        />
+                    ),
+                },
+            ],
+        },
     ]);
 }
 
