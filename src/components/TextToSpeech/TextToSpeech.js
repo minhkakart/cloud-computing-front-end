@@ -71,7 +71,7 @@ function TextToSpeech() {
                     )
                     .then((response) => {
                         console.log(response.data);
-                        // setAudioContent(response.data.audioContent);
+                        setAudioContent(response.data.audioContent);
                     })
                     .catch((error) => {
                         console.log(error);
