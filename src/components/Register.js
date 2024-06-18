@@ -139,8 +139,9 @@ const Register = () => {
                 </form>
             </div>
             <MessageModal
-                message="You have successfully registered! Please login."
+                message="You have successfully registered! Please confirm your email before login."
                 show={isRegistered}
+                link="/login"
             />
             {loading && (
                 <div className={clsx(styles.loading)}>
