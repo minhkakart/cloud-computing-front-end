@@ -65,6 +65,7 @@ function CloudTranslate() {
                         {
                             headers: {
                                 Authorization: `Bearer ${state.token}`,
+                                "Content-Type": "application/json",
                             },
                         }
                     )
