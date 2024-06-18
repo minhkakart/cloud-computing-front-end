@@ -11,7 +11,7 @@ import AuthenticatedRoute from "../components/auth/AuthenticatedRoute";
 import DetectLanguage from "../components/cloud-translate/DetectLanguage";
 import LabelDetection from "../components/VideoIntelligence/LabelDetection";
 import FaceDetection from "../components/VideoIntelligence/FaceDetection";
-import TextToSpeech from "../components/TextToSpeech";
+import TextToSpeech from "../components/TextToSpeech/TextToSpeech";
 
 function Routes() {
     return useRoutes([
