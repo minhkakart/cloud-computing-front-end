@@ -26,6 +26,11 @@ const DashBoard = () => {
             description: "Face detection in video with AI technology",
             link: "/video-intelligence/face-detection",
         },
+        {
+            name: "Text to Speech",
+            description: "Convert text to speech with AI technology",
+            link: "/text-to-speech",
+        },
     ];
 
     return (
