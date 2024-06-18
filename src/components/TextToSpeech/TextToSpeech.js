@@ -58,7 +58,7 @@ function TextToSpeech() {
                 axios
                     .post(
                         process.env.REACT_APP_API_DOMAIN +
-                            "/api/text-to-speech/",
+                            "/api/text-to-speech",
                         {
                             text: source,
                         },
