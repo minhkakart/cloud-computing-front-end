@@ -65,6 +65,7 @@ function TextToSpeech() {
                         {
                             headers: {
                                 Authorization: `Bearer ${state.token}`,
+                                'Access-Control-Allow-Origin': '*',
                             },
                         }
                     )
