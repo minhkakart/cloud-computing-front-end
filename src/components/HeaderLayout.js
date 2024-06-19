@@ -5,7 +5,7 @@ function HeaderLayout({ children }) {
     const [state] = useGlobalState();
 
     return (
-        <div className="d-flex flex-column">
+        <div className="d-flex flex-column mb-5">
             <div className="header bg-primary text-white mb-5">
                 <div className="container d-flex flex-row justify-content-between align-items-center">
                     <Link to="/" className="fs-1 text-decoration-none text-white fw-medium">Cloud Computing</Link>

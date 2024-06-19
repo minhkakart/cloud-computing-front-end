@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import styles from "../scss/TextToSpeech.module.scss";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import { useGlobalState } from "../../global";
 import Button from "react-bootstrap/Button";
@@ -14,7 +14,7 @@ function TextToSpeech() {
     // const locale = getUserLocale().split("-")[0];
 
     const [state] = useGlobalState();
-    const [listLanguage, setListLanguage] = useState([]);
+    // const [listLanguage, setListLanguage] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState({ show: false, message: "" });
 
@@ -22,7 +22,7 @@ function TextToSpeech() {
 
     const textInputRef = useRef(null);
 
-    useEffect(() => {
+    /* useEffect(() => {
         setIsLoading(true);
         axios
             .get(
@@ -44,7 +44,7 @@ function TextToSpeech() {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [state.token]);
+    }, [state.token]); */
 
     const toggleShowError = () => setError({ show: !error.show, message: "" });
 
@@ -90,7 +90,7 @@ function TextToSpeech() {
 
     return (
         <div>
-            <h1>Cloud translate</h1>
+            <h1>Cloud Text to Speech</h1>
             <div className="row mt-4">
                 <div className="col-md-6">
                     <div className="form-group">
