@@ -21,24 +21,7 @@ function CVFaceDetection() {
     const status = ["Upload and process", "Uploading", "Processing"];
     const [statusIndex, setStatusIndex] = useState(0);
 
-    const [faces, setFaces] = useState([{
-        "joyLikelihood": "VERY_LIKELY",
-        "sorrowLikelihood": "VERY_UNLIKELY",
-        "angerLikelihood": "VERY_UNLIKELY",
-        "surpriseLikelihood": "VERY_UNLIKELY",
-        "underExposedLikelihood": "VERY_UNLIKELY",
-        "blurredLikelihood": "VERY_UNLIKELY",
-        "headwearLikelihood": "UNLIKELY"
-    },
-    {
-        "joyLikelihood": "UNLIKELY",
-        "sorrowLikelihood": "VERY_UNLIKELY",
-        "angerLikelihood": "VERY_UNLIKELY",
-        "surpriseLikelihood": "VERY_UNLIKELY",
-        "underExposedLikelihood": "VERY_UNLIKELY",
-        "blurredLikelihood": "VERY_UNLIKELY",
-        "headwearLikelihood": "VERY_UNLIKELY"
-    }]);
+    const [faces, setFaces] = useState([]);
 
     const handleFileChange = (e) => {
         if (e.target.files) {
@@ -71,7 +54,6 @@ function CVFaceDetection() {
 
         if (response.status === 200) {
             setUploadedUrl([...uploadedUrl, response.data.gcs_uri]);
-            setCurrentUrl(response.data.gcs_uri);
             return response.data.gcs_uri;
         } else {
             console.log("error upload", response);
@@ -172,9 +154,7 @@ function CVFaceDetection() {
                         }}
                         aria-label="Default select example"
                         className="w-auto mb-3 mw-100">
-                        {uploadedUrl.length === 0 && (
-                            <option value="">No uploaded file</option>
-                        )}
+                        <option value="">Select</option>
                         {uploadedUrl.map((url, index) => {
                             return (
                                 <option key={index} value={url}>

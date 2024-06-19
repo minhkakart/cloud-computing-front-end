@@ -1,46 +1,52 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
+import Toast from "react-bootstrap/Toast";
+import ToastContainer from "react-bootstrap/ToastContainer";
 import axios from "axios";
 import clsx from "clsx";
 import styles from "./scss/login-register.module.scss";
 import MessageModal from "./MessageModal";
 
 const Register = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState({ show: false, message: "" });
+    const toggleShowError = () => setError({ show: !error.show, message: "" });
+
     const [Name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isConfirmed, setIsConfirmed] = useState(true);
     const [isRegistered, setIsRegistered] = useState(false);
-    const [loading, setLoading] = useState(false);
 
-    const handleRegister = () => {
+    const handleRegister = async () => {
         setLoading(true);
-        axios
-            .get(process.env.REACT_APP_API_DOMAIN + "/api/csrf-cookie")
-            .then(() => {
-                axios
-                    .post(process.env.REACT_APP_API_DOMAIN + "/api/register", {
-                        name: Name,
-                        email: email,
-                        password: password,
-                    })
-                    .then((res) => {
-                        console.log(res);
-                        setIsRegistered(true);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-                    .finally(() => {
-                        setLoading(false);
-                    });
-            })
-            .catch((error) => {
-                console.log(error);
-                setLoading(false);
-            });
+        try {
+            await axios.get(
+                process.env.REACT_APP_API_DOMAIN + "/api/csrf-cookie"
+            );
+
+            const register = await axios.post(
+                process.env.REACT_APP_API_DOMAIN + "/api/register",
+                {
+                    name: Name,
+                    email: email,
+                    password: password,
+                }
+            );
+
+            if (register.status === 200) {
+                setIsRegistered(true);
+            } else {
+                throw new Error("Failed to register. Please try again later.");
+            }
+            
+        } catch (error) {
+            setError({ show: true, message: error.message });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -84,6 +90,7 @@ const Register = () => {
                             type="password"
                             name="password"
                             id="password"
+                            autoComplete="on"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="form-control"
@@ -100,6 +107,7 @@ const Register = () => {
                             type="password"
                             name="confirm-password"
                             id="confirm-password"
+                            autoComplete="on"
                             value={confirmPassword}
                             onChange={(e) => {
                                 setConfirmPassword(e.target.value);
@@ -153,6 +161,25 @@ const Register = () => {
                     />
                 </div>
             )}
+            <ToastContainer
+                className="p-3"
+                position="bottom-end"
+                style={{ zIndex: 1 }}>
+                <Toast
+                    bg="danger"
+                    show={error.show}
+                    onClose={toggleShowError}
+                    delay={3000}
+                    autohide>
+                    <Toast.Header>
+                        <strong className="me-auto">Error</strong>
+                        <small>Now</small>
+                    </Toast.Header>
+                    <Toast.Body className="text-white">
+                        {error.message}
+                    </Toast.Body>
+                </Toast>
+            </ToastContainer>
         </div>
     );
 };

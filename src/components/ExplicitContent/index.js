@@ -48,7 +48,7 @@ function ExplicitContent() {
 
         if (response.status === 200) {
             setUploadedUrl([...uploadedUrl, response.data.gcs_uri]);
-            setCurrentUrl(response.data.gcs_uri);
+            return response.data.gcs_uri;
         } else {
             console.log("error upload", response);
             throw new Error("Upload failed");
@@ -93,8 +93,8 @@ function ExplicitContent() {
     const handleUploadAndProcess = async () => {
         setIsLoading(true);
         try {
-            await handleUpload();
-            await handleProcess(currentUrl);
+            const gcs_uri = await handleUpload();
+            await handleProcess(gcs_uri);
         } catch (error) {
             setError({ show: true, message: error.message });
         } finally {
@@ -143,9 +143,7 @@ function ExplicitContent() {
                         }}
                         aria-label="Default select example"
                         className="w-auto mb-3">
-                        {uploadedUrl.length === 0 && (
-                            <option value="">No uploaded file</option>
-                        )}
+                        <option value="">Select</option>
                         {uploadedUrl.map((url, index) => {
                             return (
                                 <option key={index} value={url}>

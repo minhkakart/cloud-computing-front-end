@@ -19,42 +19,38 @@ const Login = () => {
 
     const navigator = useNavigate();
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         setLoading(true);
-        axios
-            .get(process.env.REACT_APP_API_DOMAIN + "/api/csrf-cookie")
-            .then(() => {
-                axios
-                    .post(process.env.REACT_APP_API_DOMAIN + "/api/login", {
-                        email: email,
-                        password: password,
-                    })
-                    .then((res) => {
-                        dispatch({
-                            type: "LOGIN",
-                            payload: {
-                                user: res.data.username,
-                                token: res.data.access_token,
-                            },
-                        });
-                        navigator("/");
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                        setError({
-                            show: true,
-                            message: error.message,
-                        });
-                    })
-                    .finally(() => {
-                        setLoading(false);
-                    });
-            })
-            .catch((error) => {
-                console.log(error);
-                setLoading(false);
-                setError({ show: true, message: error.message });
-            });
+        try {
+            await axios.get(
+                process.env.REACT_APP_API_DOMAIN + "/api/csrf-cookie"
+            );
+
+            const login = await axios.post(
+                process.env.REACT_APP_API_DOMAIN + "/api/login",
+                {
+                    email: email,
+                    password: password,
+                }
+            );
+
+            if (login.status === 200) {
+                dispatch({
+                    type: "LOGIN",
+                    payload: {
+                        user: login.data.username,
+                        token: login.data.access_token,
+                    },
+                });
+                navigator("/");
+            } else {
+                throw new Error("Failed to register. Please try again later.");
+            }
+        } catch (error) {
+            setError({ show: true, message: error.message });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -84,6 +80,7 @@ const Login = () => {
                             type="password"
                             name="password"
                             id="password"
+                            autoComplete="on"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="form-control"
@@ -137,7 +134,9 @@ const Login = () => {
                         <strong className="me-auto">Error</strong>
                         <small>Now</small>
                     </Toast.Header>
-                    <Toast.Body  className="text-white">{error.message}</Toast.Body>
+                    <Toast.Body className="text-white">
+                        {error.message}
+                    </Toast.Body>
                 </Toast>
             </ToastContainer>
         </div>

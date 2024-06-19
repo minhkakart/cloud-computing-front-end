@@ -54,7 +54,6 @@ function CVSafeSearchDetetion() {
 
         if (response.status === 200) {
             setUploadedUrl([...uploadedUrl, response.data.gcs_uri]);
-            setCurrentUrl(response.data.gcs_uri);
             return response.data.gcs_uri;
         } else {
             console.log("error upload", response);
@@ -156,9 +155,7 @@ function CVSafeSearchDetetion() {
                         }}
                         aria-label="Default select example"
                         className="w-auto mb-3 mw-100">
-                        {uploadedUrl.length === 0 && (
-                            <option value="">No uploaded file</option>
-                        )}
+                        <option value="">Select</option>
                         {uploadedUrl.map((url, index) => {
                             return (
                                 <option key={index} value={url}>
