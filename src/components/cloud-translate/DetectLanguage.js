@@ -33,7 +33,6 @@ function DetectLanguage() {
                 }
             )
             .then((response) => {
-                // console.log(response.data);
                 setListLanguage(response.data);
             })
             .catch((error) => {
@@ -69,7 +68,6 @@ function DetectLanguage() {
                         }
                     )
                     .then((res) => {
-                        // console.log(res.data);
                         const detected =  listLanguage?.find((item) => {
                             if (item.code === res.data.languageCode.split('-')[0]) {
                                 return true;

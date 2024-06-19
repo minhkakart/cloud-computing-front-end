@@ -11,7 +11,6 @@ function UploadImage() {
     };
 
     const handleUpload = async () => {
-        console.log(file);
         const formData = new FormData()
         formData.append('image', file)
         try {

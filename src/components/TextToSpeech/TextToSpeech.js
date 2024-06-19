@@ -22,30 +22,6 @@ function TextToSpeech() {
 
     const textInputRef = useRef(null);
 
-    /* useEffect(() => {
-        setIsLoading(true);
-        axios
-            .get(
-                process.env.REACT_APP_API_DOMAIN +
-                    "/api/cloud-translate/list-language",
-                {
-                    headers: {
-                        Authorization: `Bearer ${state.token}`,
-                    },
-                }
-            )
-            .then((response) => {
-                console.log(listLanguage);
-                setListLanguage(response.data);
-            })
-            .catch((error) => {
-                console.error(error);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }, [state.token]); */
-
     const toggleShowError = () => setError({ show: !error.show, message: "" });
 
     const handleProcess = () => {
@@ -70,7 +46,6 @@ function TextToSpeech() {
                         }
                     )
                     .then((response) => {
-                        console.log(response.data);
                         setAudioContent(response.data.audioContent);
                     })
                     .catch((error) => {

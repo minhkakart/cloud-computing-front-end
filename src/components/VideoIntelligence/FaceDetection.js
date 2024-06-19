@@ -29,7 +29,6 @@ function LabelDetection() {
 
     const handleUpload = async () => {
         setAnotationResults([]);
-        console.log(file);
         const formData = new FormData();
         formData.append("file", file);
         try {
@@ -50,7 +49,6 @@ function LabelDetection() {
                             }
                         )
                         .then((response) => {
-                            console.log(response);
                             setStatusIndex(2);
                             axios
                                 .post(
@@ -66,7 +64,6 @@ function LabelDetection() {
                                     }
                                 )
                                 .then((response) => {
-                                    console.log(response);
                                     setAnotationResults(
                                         response.data.anotation_results
                                     );

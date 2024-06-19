@@ -30,7 +30,6 @@ const Login = () => {
                         password: password,
                     })
                     .then((res) => {
-                        console.log(res.data);
                         dispatch({
                             type: "LOGIN",
                             payload: {
